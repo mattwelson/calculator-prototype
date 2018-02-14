@@ -1,0 +1,11 @@
+export default {
+  interest: 13.75,
+  establishmentFee: 365,
+  monthlyFee: 8,
+  smooth: true,
+  animated: true,
+  labels: true,
+  wings: true,
+  frequencySlider: true,
+  paymentSliderVisible: true
+}

@@ -1,0 +1,6 @@
+.calc {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(100px, 400px));
+  justify-content: center;
+  align-content: center;
+}
