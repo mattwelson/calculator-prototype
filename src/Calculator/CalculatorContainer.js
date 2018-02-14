@@ -1,5 +1,6 @@
 import React from 'react'
 import defaults from './logic/defaults'
+import { getPayment} from './logic/calc'
 
 import Calculator from './Calculator'
 import Settings from './Settings'
@@ -7,37 +8,34 @@ import Settings from './Settings'
 import './calculator.css'
 
 class CalculatorContainer extends React.Component {
-  state = {
-    settings: { ...defaults },
-    term: 1,
-    payment: 4,
-    freq: 3
-  }
-
+  state = { ...defaults, result: getPayment(defaults) }
   handleChange = e => {
-    const {target} = e
-    console.log(e)
+    const { target } = e
     this.setState(() => ({
-      [target.name]: Math.round(target.value)
+      [target.name]: Math.round(target.value),
+      ...this.invertSlider(target)
     }))
-    this.invertSlider(target)
+    this.setState((s) => ({
+      result: getPayment(s)
+    }))
   }
 
-  invertSlider = ({name, value}) => {
-    const slave = name === "term" ? "payment" : name === "payment" ? "term" : null
-    this.setState(() => ({
-      [slave]: 5 - value
-    })) 
+  invertSlider = ({ name, value }) => {
+    const slave =
+      name === 'term' ? 'payment' : name === 'payment' ? 'term' : null
+    return slave && { [slave]: 5 - value }
   }
 
   render() {
     return (
       <div className="calc">
         <Calculator
+          principal={this.state.principal}
           term={this.state.term}
           payment={this.state.payment}
           freq={this.state.freq}
           handleChange={this.handleChange}
+          result={this.state.result}
         />
         <Settings />
       </div>

@@ -4,3 +4,17 @@
   justify-content: center;
   align-content: center;
 }
+
+.calculator {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-gap: 20px;
+}
+
+label[for="term"] {
+  grid-column: 1;
+}
+
+.result__title {
+  grid-column: 1;
+}

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { getFrequency } from './logic/calc'
+
 // A calculator prototype
 // Text box with amount
 // Term slider
@@ -8,11 +10,21 @@ import React from 'react'
 // sentence stating payment
 // terms and conditions
 
-export default ({ term, freq, payment, handleChange }) => (
+export default ({ principal, term, freq, payment, handleChange, result }) => (
   <div>
     <h1>Calculator</h1>
-    <div>
+    <div className="calculator">
+      <label htmlFor="amount">Amount</label>
       <input
+        id="amount"
+        type="text"
+        value={principal}
+        name="principal"
+        onChange={handleChange}
+      />
+      <label htmlFor="term">Term</label>
+      <input
+        id="term"
         name="term"
         type="range"
         min="1"
@@ -21,9 +33,10 @@ export default ({ term, freq, payment, handleChange }) => (
         value={term}
         onChange={handleChange}
       />
-    </div>
-    <div>
+      <div>{term * 12}</div>
+      <label htmlFor="freq">Frequency</label>
       <input
+        id="freq"
         name="freq"
         type="range"
         min="1"
@@ -31,9 +44,10 @@ export default ({ term, freq, payment, handleChange }) => (
         value={freq}
         onChange={handleChange}
       />
-    </div>
-    <div>
+      <div>{getFrequency(freq) && getFrequency(freq).name}</div>
+      <label htmlFor="payment">Payment</label>
       <input
+        id="payment"
         name="payment"
         type="range"
         min="1"
@@ -41,6 +55,8 @@ export default ({ term, freq, payment, handleChange }) => (
         value={payment}
         onChange={handleChange}
       />
+      <div className="result__title">Result:</div>
+      <div className="result__amount">{result.paymentPerFreq}</div>
     </div>
   </div>
 )
