@@ -16,8 +16,9 @@ class CalculatorContainer extends React.Component {
 
   handleChange = e => {
     const {target} = e
+    console.log(e)
     this.setState(() => ({
-      [target.name]: target.value
+      [target.name]: Math.round(target.value)
     }))
     this.invertSlider(target)
   }

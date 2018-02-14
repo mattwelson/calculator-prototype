@@ -17,6 +17,7 @@ export default ({ term, freq, payment, handleChange }) => (
         type="range"
         min="1"
         max="4"
+        step="any"
         value={term}
         onChange={handleChange}
       />
