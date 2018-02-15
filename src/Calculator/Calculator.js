@@ -10,7 +10,7 @@ import { getFrequency } from './logic/calc'
 // sentence stating payment
 // terms and conditions
 
-export default ({ principal, term, freq, payment, handleChange, result }) => (
+export default ({ principal, term, freq, payment, handleChange, result, interest }) => (
   <div>
     <h1>Calculator</h1>
     <div className="calculator">
@@ -27,8 +27,8 @@ export default ({ principal, term, freq, payment, handleChange, result }) => (
         id="term"
         name="term"
         type="range"
-        min="1"
-        max="4"
+        min={1}
+        max={4}
         step="any"
         value={term}
         onChange={handleChange}
@@ -50,13 +50,17 @@ export default ({ principal, term, freq, payment, handleChange, result }) => (
         id="payment"
         name="payment"
         type="range"
-        min="1"
-        max="4"
+        min={1}
+        max={4}
         value={payment}
         onChange={handleChange}
       />
-      <div className="result__title">Result:</div>
-      <div className="result__amount">{result.paymentPerFreq}</div>
+      <div className="result__summary">
+        Pay ${result.paymentPerFreq} per {getFrequency(freq).period}
+      </div>
+      <div className="result__terms">
+        Full term amount payable of ${result.amountPayable}. Default interest rate of {interest}%
+      </div>
     </div>
   </div>
 )
