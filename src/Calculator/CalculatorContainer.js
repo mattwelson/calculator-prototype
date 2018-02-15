@@ -27,6 +27,7 @@ class CalculatorContainer extends React.Component {
   }
 
   render() {
+    console.log(this.state.result)
     return (
       <div className="calc">
         <Calculator
@@ -36,6 +37,7 @@ class CalculatorContainer extends React.Component {
           freq={this.state.freq}
           handleChange={this.handleChange}
           result={this.state.result}
+          interest={this.state.interest}
         />
         <Settings />
       </div>

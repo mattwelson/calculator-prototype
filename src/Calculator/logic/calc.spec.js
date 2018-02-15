@@ -5,7 +5,7 @@ describe('getPayment', () => {
     expect(
       getPayment({
         freq: 1,
-        term: 30 * 12,
+        term: 30,
         interest: 6.5,
         principal: 200000,
         establishmentFee: 0,
@@ -18,7 +18,7 @@ describe('getPayment', () => {
     expect(
       getPayment({
         freq: 1,
-        term: 3 * 12,
+        term: 3 ,
         interest: 13.75,
         principal: 20000,
         establishmentFee: 365,
@@ -31,7 +31,7 @@ describe('getPayment', () => {
     expect(
       getPayment({
         freq: 1,
-        term: 3 * 12,
+        term: 3,
         interest: 13.75,
         principal: 20000,
         establishmentFee: 365,

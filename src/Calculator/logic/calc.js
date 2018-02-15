@@ -6,8 +6,8 @@ export const getPayment = state => {
     state.monthlyFee +
     monthlyInterest *
       (state.principal + state.establishmentFee) /
-      (1 - (1 + monthlyInterest) ** (-1 * state.term)))
-  const amountPayable = paymentPerMonth * state.term
+      (1 - (1 + monthlyInterest) ** (-1 * state.term * 12)))
+  const amountPayable = paymentPerMonth * state.term * 12
   const paymentPerFreq = Math.round(getFrequency(state.freq).modifier * paymentPerMonth)
   return {
     ...state,
@@ -17,14 +17,12 @@ export const getPayment = state => {
   }
 }
 
-// get summary, will take in the state and return a string summarising the agreement
-
 // get terms, will take in state and return a summary of the terms and conditions if the calculation has been run, if not will return generic T&C
 
 export const getFrequency = freq => {
   return {
-    1: { name: 'Weekly', modifier: 12 / 52, value: 'W' },
-    2: { name: 'Fortnightly', modifier: 24 / 52, value: 'F' },
-    3: { name: 'Monthly', modifier: 1, value: 'M' }
+    1: { name: 'Weekly', modifier: 12 / 52, value: 'W', period: 'Week' },
+    2: { name: 'Fortnightly', modifier: 24 / 52, value: 'F', period: 'Fortnight' },
+    3: { name: 'Monthly', modifier: 1, value: 'M', period: 'Month' }
   }[freq]
 }
